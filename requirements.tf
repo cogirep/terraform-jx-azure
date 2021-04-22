@@ -3,7 +3,9 @@ locals {
 
     registry_name        = "${module.registry.registry_name}.azurecr.io"
     domain_name          = module.dns.domain
-    dns_enabled          = var.dns_enabled
+    apex_domain          = var.apex_domain
+    subdomain            = var.subdomain
+    domain_enabled       = var.apex_domain != "" ? true : false
     dns_resource_group   = module.dns.resource_group_name
     dns_tenant_id        = module.dns.tenant_id
     dns_subscription_id  = module.dns.subscription_id

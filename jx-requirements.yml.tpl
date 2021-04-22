@@ -11,19 +11,15 @@ spec:
       secretStorage:
         keyVaultName: ${key_vault_name}
   %{ endif }
-  %{ if dns_enabled }
       dns:
         resourceGroup: ${dns_resource_group}
         tenantId: ${dns_tenant_id}
         subscriptionId: ${dns_subscription_id}
-  %{ endif }
   environments:
     - key: dev
   ingress:
     domain: ${domain_name}
-  %{ if dns_enabled }
-    externalDNS: true
-  %{ endif }
+    externalDNS: ${domain_enabled}
     tls: {}
   %{ if key_vault_enabled }
   secretStorage: azurekeyvault
